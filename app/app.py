@@ -1,6 +1,10 @@
 import sys
 import os
-
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "predictor_model_RandomForest.pkl"
+ENCODER_PATH = BASE_DIR / "models" / "Rock encoder.pkl"
+DATA_PATH=BASE_DIR / "data" / "processed" /"processed_data.csv"
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 import streamlit as st
 import numpy as np
@@ -12,15 +16,15 @@ from src.visualization import create_3d_map
 predicted_grade=0
 @st.cache_resource
 def load_model():
-    return jb.load("../models/predictor_model_RandomForest.pkl")
+    return jb.load(MODEL_PATH)
 
 
 model = load_model()
-enc=jb.load("../models/Rock encoder.pkl")
+enc=jb.load(ENCODER_PATH)
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("../data/processed/processed_data.csv")
+    return pd.read_csv(DATA_PATH)
 
 data = load_data()
 total_revenue = (data["Gross"]*0.6).sum()
