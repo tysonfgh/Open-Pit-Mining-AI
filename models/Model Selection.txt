@@ -1,0 +1,10 @@
+Random Forest Scores:
+MAE=3.055
+R2=0.971
+
+XGBoost Scores:
+MAE=3.36
+R20.966
+
+Though the XGBoost model is much lighter than the random forest model but the random forest model shows a higher accuracy scores than the xgboost 
+so the Random Forest Model is Finally Chosen
